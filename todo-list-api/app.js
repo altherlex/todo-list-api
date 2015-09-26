@@ -3,13 +3,14 @@
 var SwaggerExpress = require('swagger-express-mw');
 // var SwaggerUi = require('swagger-tools/middleware/swagger-ui');
 var SwaggerUi = require('swagger-express-mw/node_modules/swagger-node-runner/node_modules/swagger-tools/middleware/swagger-ui');
-
 var app = require('express')();
-module.exports = app; // for testing
-
 var config = {
   appRoot: __dirname // required config
 };
+var db = require('./api/models');
+var port = process.env.PORT || 3000;
+  
+module.exports = app; // for testing
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
@@ -17,11 +18,29 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   //add swagger-ui
   app.use(SwaggerUi(swaggerExpress.runner.swagger));
 
+/*  // Custom error handler that returns JSON
+  app.use(function(err, req, res, next) {
+    if (typeof err !== 'object') {
+      // If the object is not an Error, create a representation that appears to be
+      err = {
+        message: String(err) // Coerce to string
+      };
+    } else {
+      // Ensure that err.message is enumerable (It is not by default)
+      Object.defineProperty(err, 'message', { enumerable: true });
+    }
+    res.statusCode = 500;
+    res.json(err);
+  });
+*/
   // install middleware
   swaggerExpress.register(app);
 
-  var port = process.env.PORT || 3000;
-  app.listen(port);
+  db.sequelize.sync().then(function() {
+    app.listen(port, function(){
+      console.log('try this: curl http://127.0.0.1:' + port + '/hello?name=Scott');
+      console.log('Started webservice server listening on http://127.0.0.1:' + port);
+    });
+  });
 
-  console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
 });

@@ -12,10 +12,15 @@
     "debug": "node-debug app.js 3000"
   },
   "dependencies": {
+    "async": "^1.4.2",
+    "expect.js": "^0.3.1",
     "express": "^4.12.3",
+    "moment": "^2.10.6",
+    "momment": "2.10.6",
     "pg": "^4.4.2",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.9.0",
+    "sqlite3": "^3.1.0",
     "swagger-express-mw": "0.0.x"
   },
   "devDependencies": {

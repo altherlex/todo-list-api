@@ -1,0 +1,21 @@
+{
+  "name": "todo-list-app",
+  "version": "0.0.0",
+  "authors": [
+    "Alther <para.alves@gmail.com>"
+  ],
+  "description": "Assets for rails application",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/altherlex/todo-list",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

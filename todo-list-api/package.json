@@ -20,6 +20,7 @@
     "pg": "^4.4.2",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.9.0",
+    "should": "^7.1.0",
     "sqlite3": "^3.1.0",
     "swagger-express-mw": "0.0.x"
   },

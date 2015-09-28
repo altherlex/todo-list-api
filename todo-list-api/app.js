@@ -8,7 +8,7 @@ var config = {
   appRoot: __dirname // required config
 };
 var db = require('./api/models');
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
   
 module.exports = app; // for testing
 
@@ -18,21 +18,6 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   //add swagger-ui
   app.use(SwaggerUi(swaggerExpress.runner.swagger));
 
-/*  // Custom error handler that returns JSON
-  app.use(function(err, req, res, next) {
-    if (typeof err !== 'object') {
-      // If the object is not an Error, create a representation that appears to be
-      err = {
-        message: String(err) // Coerce to string
-      };
-    } else {
-      // Ensure that err.message is enumerable (It is not by default)
-      Object.defineProperty(err, 'message', { enumerable: true });
-    }
-    res.statusCode = 500;
-    res.json(err);
-  });
-*/
   // install middleware
   swaggerExpress.register(app);
 

@@ -22,5 +22,10 @@ module TodoListApp
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.assets.paths << Rails.root.join('bower_components')
+
+    # Access NodejsWs Restful
+    config.ws = {host: 'http://localhost:3001'}
   end
 end

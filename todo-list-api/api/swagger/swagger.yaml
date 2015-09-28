@@ -55,27 +55,31 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /task/{month}/{day}/{year}:
     x-swagger-router-controller: task
-    # FIXME: post verb to create
-    get:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+        - text/xml
+        - text/html
       description: Create a new task
       operationId: create
       parameters:
         - name: month
-          in: path
+          in: query
           description: month
-          required: true
+          required: false
           type: integer
         - name: day
-          in: path
+          in: query
           description: day
-          required: true
+          required: false
           type: integer
         - name: year
-          in: path
+          in: query
           description: year
-          required: true
+          required: false
           type: integer
         - name: description
           in: query
@@ -87,16 +91,38 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/ObjectResponse"
+        "400":
+          description: Success
+          schema:
+            $ref: "#/definitions/ObjectResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ObjectResponse"
+  /task/{id}:
+    x-swagger-router-controller: task
+    delete:
+      description: Delete a specific task
+      operationId: destroy
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ObjectResponse"
         default:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-
-  /task/{id}:
-    x-swagger-router-controller: delete_task
-    delete:
-      description: Delete a specific task
-      operationId: delete_task
+    x-swagger-router-controller: task
+    put:
+      description: Update a specific task
+      operationId: update
       parameters:
         - name: id
           in: path
@@ -128,6 +154,7 @@ definitions:
       message:
         type: string
   ErrorResponse:
+    type: object
     required:
       - message
     properties:

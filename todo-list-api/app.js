@@ -9,6 +9,9 @@ var config = {
 };
 var db = require('./api/models');
 var port = process.env.PORT || 3001;
+var cors = require('cors'); // Access-Control-Allow-Origin
+
+app.use(cors());
   
 module.exports = app; // for testing
 

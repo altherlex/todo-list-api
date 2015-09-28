@@ -31,6 +31,24 @@ describe('Funcional Test', function() {
             done();
           });
       });
-    });
-  });
+    }); // GET tasks
+    describe.only('POST /tasks', function() {
+      it('should return an array', function(done) {
+        request(server)
+          .post('/tasks')
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .end(function(err, res) {
+            console.log('-------------------------------------------------');
+            console.log(err);
+            console.log('-------------------------------------------------');
+            should.not.exist(err);
+            console.log(res.body);
+            res.body.should.be.an.instanceOf(Array);
+            done();
+          });
+      });
+    }); // GET tasks
+  }); // controller
 });

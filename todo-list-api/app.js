@@ -15,6 +15,10 @@ app.use(cors());
   
 module.exports = app; // for testing
 
+app.get('/', function(req, res) {
+  res.redirect('docs');
+});
+
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
 

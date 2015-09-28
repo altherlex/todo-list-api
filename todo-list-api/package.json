@@ -8,9 +8,12 @@
   "license": "",
   "main": "app.js",
   "scripts": {
-    "start": "supervisor app.js",
+    "start": "node app.js",
     "debug": "node-debug app.js 3000"
   },
+  "engines": {
+    "node": "4.1.1"
+  },  
   "dependencies": {
     "async": "^1.4.2",
     "cors": "^2.7.1",
